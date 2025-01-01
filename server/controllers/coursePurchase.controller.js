@@ -41,14 +41,8 @@ export const createCheckOutSession = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url:
-        import.meta.env.MODE === "development"
-          ? `http://localhost:5173/course-progress/${courseId}`
-          : `/course-progress/${courseId}`, // once payment successful redirect to course progress page
-      cancel_url:
-        import.meta.env.MODE === "development"
-          ? `http://localhost:5173/course-detail/${courseId}`
-          : `/course-detail/${courseId}`, // once payment cancelled redirect to course detail page
+      success_url: `/course-progress/${courseId}`, // once payment successful redirect to course progress page
+      cancel_url: `/course-detail/${courseId}`,
       metadata: {
         courseId: courseId,
         userId: userId,
