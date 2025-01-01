@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import typographyPlugin from "@tailwindcss/typography"; // Import the plugin properly in ESM
-
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
@@ -55,7 +53,5 @@ export default {
       },
     },
   },
-  plugins: [
-    typographyPlugin, // Use the imported plugin
-  ],
+  plugins: [(await import("tailwindcss-animate")).default],
 };
