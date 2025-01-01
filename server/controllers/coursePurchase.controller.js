@@ -25,7 +25,7 @@ export const createCheckOutSession = async (req, res) => {
     });
 
     //Create a stripe checkout session
-    const baseUrl =process.meta.env.MODE==="development"?"http://localhost:8080/api/v1/purchase" :"/api/v1/purchse";  // Set your base URL here
+    const baseUrl =process.meta.env.MODE==="development"?"http://localhost:8080/api/v1/purchase" :"/api/v1/purchase";  // Set your base URL here
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
