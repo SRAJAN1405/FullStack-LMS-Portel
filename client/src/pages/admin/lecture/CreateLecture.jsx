@@ -9,7 +9,7 @@ import {
 } from "@/features/api/courseApi";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import Lecture from "./lecture.jsx";
+import Lecture from "./Lecture.jsx";
 
 const CreateLecture = () => {
   const [lectureTitle, setLectureTitle] = useState("");
