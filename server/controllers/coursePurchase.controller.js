@@ -28,7 +28,7 @@ export const createCheckOutSession = async (req, res) => {
     });
 
     //Create a stripe checkout session
-    const baseUrl = "https://fullstack-lms-portel.onrender.com/api/v1/purchase";
+    const baseUrl = "https://fullstack-lms-portel.onrender.com";
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
