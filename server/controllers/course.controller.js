@@ -362,7 +362,7 @@ export const getPublishedCourse = async (_, res) => {
       path: "creator",
       select: "name photoUrl",
     });
-    console.log(courses, "courses");
+    // console.log(courses, "courses");
     if (!courses) {
       return res.status(404).json({
         message: "No published courses found",

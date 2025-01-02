@@ -3,6 +3,9 @@ import { Course } from "../models/course.model.js";
 import { CoursePurchase } from "./../models/coursePurchase.model.js";
 import { User } from "../models/user.model.js";
 import { Lecture } from "../models/lecture.model.js";
+import dotenv from "dotenv";
+
+dotenv.config({});
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -25,7 +28,10 @@ export const createCheckOutSession = async (req, res) => {
     });
 
     //Create a stripe checkout session
-    const baseUrl =process.meta.env.MODE==="development"?"http://localhost:8080/api/v1/purchase" :"/api/v1/purchase";  // Set your base URL here
+    const baseUrl =
+      process.env.NODE_ENV === "production"
+        ? "/api/v1/purchase"
+        : "http://localhost:8080/api/v1/purchase"; // Set your base URL here
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -43,8 +49,8 @@ export const createCheckOutSession = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `${baseUrl}/course-progress/${courseId}`,  // Full URL
-      cancel_url: `${baseUrl}/course-detail/${courseId}`,   // Full URL
+      success_url: `${baseUrl}/course-progress/${courseId}`, // Full URL
+      cancel_url: `${baseUrl}/course-detail/${courseId}`, // Full URL
       metadata: {
         courseId: courseId,
         userId: userId,
